@@ -7,32 +7,27 @@ class GotemCard extends LitElement {
     return this.attachShadow({ mode: "open" });
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-
+  firstUpdated() {
     const duplicateButton = this.shadowRoot.querySelector("#duplicate");
-    if (duplicateButton) {
-      duplicateButton.addEventListener("click", this.duplicateCard.bind(this));
-    }
+    duplicateButton.addEventListener("click", this.duplicateCard.bind(this));
 
     const colorChangeButton = this.shadowRoot.querySelector("#colorChange");
-    if (colorChangeButton) {
-      colorChangeButton.addEventListener("click", this.changeColor.bind(this));
-    }
+    colorChangeButton.addEventListener("click", this.colorChange.bind(this));
 
     const headingChangeButton = this.shadowRoot.querySelector("#headingChange");
-    if (headingChangeButton) {
-      headingChangeButton.addEventListener(
-        "click",
-        this.changeHeading.bind(this)
-      );
-    }
+    headingChangeButton.addEventListener("click", this.headingChange.bind(this));
 
     const deleteLastButton = this.shadowRoot.querySelector("#deleteLast");
-    if (deleteLastButton) {
-      deleteLastButton.addEventListener("click", this.deleteLast.bind(this));
-    }
+    deleteLastButton.addEventListener("click", this.deleteLast.bind(this));
   }
+
+  connectedCallback() {
+    super.connectedCallback();
+    super.createRenderRoot();
+    super.firstUpdated();
+  }
+
+
 
   duplicateCard() {
     var card = this.shadowRoot.querySelector("#cardContainer");
@@ -62,29 +57,27 @@ class GotemCard extends LitElement {
     }
   }
 
-  static properties = {
-    header: { type: String },
-  };
+  static properties = {};
 
   static styles = css`
     :host {
       display: flex;
       flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
+      justify-content: center;
+      align-items: center;
+      flex: 0.6;
     }
 
     section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex: 0.6;
+    }
 
     button {
-      visibility: hidden;
+      visibility: visible;
       margin: 8px;
     }
 
@@ -160,28 +153,28 @@ class GotemCard extends LitElement {
 
   render() {
     return html`
-        <section>
-          <div class="wrapper">
-            <button id="duplicate">Duplicate Card</button>
-            <button id="colorChange">Change Color</button>
-            <button id="headingChange">Change Heading</button>
-            <button id="deleteLast">Delete Last</button>
-            <div id="cardContainer">  
-              <div>
-                <h1 id="title">Gotem</h1>
-              </div>
-              <img
-                id="cardImg"
-                src="https://i.kym-cdn.com/photos/images/newsfeed/001/323/085/7fd.jpg"
-                alt="Circle Game. You lose."
-              />
-              <details>
-                <summary>Details</summary>
-                <p>Image deviously licked from KnowYourMeme</p>
-              </details>
+      <section>
+        <div class="wrapper">
+          <button id="duplicate">Duplicate Card</button>
+          <button id="colorChange">Change Color</button>
+          <button id="headingChange">Change Heading</button>
+          <button id="deleteLast">Delete Last</button>
+          <div id="cardContainer">
+            <div>
+              <h1 id="title">Gotem</h1>
             </div>
+            <img
+              id="cardImg"
+              src="https://i.kym-cdn.com/photos/images/newsfeed/001/323/085/7fd.jpg"
+              alt="Circle Game. You lose."
+            />
+            <details>
+              <summary>Details</summary>
+              <p>Image deviously licked from KnowYourMeme</p>
+            </details>
           </div>
-        </section>
+        </div>
+      </section>
     `;
   }
 }
