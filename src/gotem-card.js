@@ -60,15 +60,7 @@ class GotemCard extends LitElement {
   static properties = {};
 
   static styles = css`
-    :host {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      flex: 0.6;
-    }
-
-    section {
+    :host, section {
       display: flex;
       flex-direction: column;
       justify-content: center;
