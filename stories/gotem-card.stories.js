@@ -12,7 +12,7 @@ export default {
 function Template({ header, backgroundColor }) {
   return html`
     <gotem-card
-      style="--gotem-card-background-color: ${backgroundColor || 'brown'}"
+      style="--gotem-card-background-color: ${backgroundColor || 'white'}"
       .header=${header}
     >
     </gotem-card>
